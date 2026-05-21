@@ -1,0 +1,86 @@
+/* Site-specific tweaks layered on top of Traveler's style.css */
+
+/* Safety: if main.js fails to call fadeOut on the loader,
+   hide it via CSS after 1.5s so the page isn't blank. */
+.gtco-loader {
+  animation: bp-hide-loader 0s 1.5s forwards;
+}
+@keyframes bp-hide-loader {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* Same safety for .animate-box: reveal after 3s if waypoints
+   never fires (so content doesn't stay invisible). */
+.js .animate-box {
+  animation: bp-reveal 0s 3s forwards;
+}
+@keyframes bp-reveal {
+  to { opacity: 1; }
+}
+
+
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.schedule-list li {
+  display: flex;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 16px;
+  color: #444;
+}
+
+.schedule-list li:last-child {
+  border-bottom: none;
+}
+
+.schedule-list .time {
+  flex: 0 0 140px;
+  font-weight: 700;
+  color: #09C6AB;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.schedule-list .event {
+  flex: 1;
+}
+
+.schedule-list .event em {
+  color: #888;
+  font-style: normal;
+  font-size: 0.9em;
+}
+
+.schedule-list a {
+  color: #1a1a1a;
+  border-bottom: 1px dashed #09C6AB;
+}
+
+.schedule-list a:hover {
+  color: #09C6AB;
+  text-decoration: none;
+}
+
+/* Highlight a venue card when anchor-linked */
+.fh5co-card-item:target {
+  box-shadow: 0 0 0 3px #09C6AB, 0px 2px 5px 0px rgba(0, 0, 0, 0.08);
+}
+
+/* Venue card body spacing for buttons */
+.fh5co-card-item .fh5co-text .btn-sm {
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+/* Hero subtitle paragraphs (under <h1> in covers) */
+.gtco-cover .display-tc p,
+.gtco-cover .mt-text p {
+  color: #fff;
+  opacity: 0.9;
+}
