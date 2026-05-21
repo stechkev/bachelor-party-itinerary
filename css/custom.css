@@ -79,6 +79,15 @@
   row-gap: 30px;
 }
 
+/* Hero backgrounds: parallax-style fixed attachment so the image stays
+   locked to the viewport while content scrolls over it. Prevents the
+   size jump that happened when stellar.js retroactively repositioned
+   the bg on first scroll. Mobile Safari falls back to "scroll" (still
+   looks fine, just not parallax). */
+.gtco-cover {
+  background-attachment: fixed;
+}
+
 /* Day grouping on the venues page */
 .day-section {
   margin-bottom: 50px;
