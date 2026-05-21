@@ -1,21 +1,17 @@
 /* Site-specific tweaks layered on top of Traveler's style.css */
 
-/* Safety: if main.js fails to call fadeOut on the loader,
-   hide it via CSS after 1.5s so the page isn't blank. */
+/* Static site — no loader. Traveler's loader was a full-screen white
+   overlay relying on JS to fade out, which made the page look blank
+   if any script failed. Hide it permanently. */
 .gtco-loader {
-  animation: bp-hide-loader 0s 1.5s forwards;
-}
-@keyframes bp-hide-loader {
-  to { opacity: 0; visibility: hidden; }
+  display: none !important;
 }
 
-/* Same safety for .animate-box: reveal after 3s if waypoints
-   never fires (so content doesn't stay invisible). */
+/* Defeat Traveler's animate-box opacity:0 default so content is
+   always visible. If JS adds fadeIn classes on scroll, those still
+   play (briefly), but content never starts invisible. */
 .js .animate-box {
-  animation: bp-reveal 0s 3s forwards;
-}
-@keyframes bp-reveal {
-  to { opacity: 1; }
+  opacity: 1 !important;
 }
 
 
@@ -29,19 +25,15 @@
   display: flex;
   align-items: baseline;
   padding: 14px 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #5a5a5a;
   font-size: 16px;
   color: #444;
-}
-
-.schedule-list li:last-child {
-  border-bottom: none;
 }
 
 .schedule-list .time {
   flex: 0 0 140px;
   font-weight: 700;
-  color: #09C6AB;
+  color: #191C0C;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-size: 13px;
@@ -52,30 +44,67 @@
 }
 
 .schedule-list .event em {
-  color: #888;
+  color: #5a5a5a;
   font-style: normal;
   font-size: 0.9em;
 }
 
 .schedule-list a {
   color: #1a1a1a;
-  border-bottom: 1px dashed #09C6AB;
+  border-bottom: 1px dashed #191C0C;
 }
 
 .schedule-list a:hover {
-  color: #09C6AB;
+  color: #191C0C;
   text-decoration: none;
 }
 
 /* Highlight a venue card when anchor-linked */
 .fh5co-card-item:target {
-  box-shadow: 0 0 0 3px #09C6AB, 0px 2px 5px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 3px #191C0C, 0px 2px 5px 0px rgba(0, 0, 0, 0.08);
 }
 
 /* Venue card body spacing for buttons */
 .fh5co-card-item .fh5co-text .btn-sm {
   margin-right: 6px;
   margin-top: 6px;
+}
+
+/* Equal-height venue cards: make any row containing card items a flex
+   container so columns stretch and cards fill their cells. Prevents
+   Bootstrap 3 float-grid "snagging" when one card is taller. */
+.row:has(.fh5co-card-item) {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+}
+
+/* Day grouping on the venues page */
+.day-section {
+  margin-bottom: 50px;
+}
+.day-section:last-child {
+  margin-bottom: 0;
+}
+.day-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #191C0C;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #5a5a5a;
+}
+
+.fh5co-card-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fh5co-card-item .fh5co-text {
+  flex: 1;
 }
 
 /* Hero subtitle paragraphs (under <h1> in covers) */
