@@ -122,3 +122,14 @@
   color: #fff;
   opacity: 0.9;
 }
+
+/* Traveler's footer-links <ul> has `float: left` which collapses
+   .gtco-widget around it (no clearfix). On mobile, columns stack
+   as plain blocks, so the next column ("The Crew") renders right
+   below the <h3> — overlaying the 2nd and 3rd Quick Links items
+   and swallowing their clicks. Drop the float so the <ul> sits
+   in normal flow and the column expands to contain it. */
+#gtco-footer .gtco-footer-links {
+  float: none;
+}
+
